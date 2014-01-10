@@ -7,11 +7,15 @@ This plugin is basically an enhanced version of the built-in output `tcp`. It al
 
 To report to sensu, you can have:
 
-    output { 
+    output {
       tcp_custom {
+        codec => "json"
         host => "localhost"
         port => 3030
-        mapping => ["output", "%{message}"]
+        mapping => ["output", "%{message}",
+                    "name", "logstash_to_sensu",
+                    "status", 1,
+                    "handler", "debug"]
       }
       ...
     }
