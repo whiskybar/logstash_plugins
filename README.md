@@ -9,16 +9,19 @@ the fields you need and convert them if needed.
 
 To report to sensu, you can have:
 
-    output { 
+    output {
       tcp_custom {
+        codec => "json"
         host => "localhost"
         port => 3030
         mapping => {
           "output" => "%{message}"
-          "port" => "%{port}"
+          "name" => "logstash_to_sensu"
+          "status" => 1
+          "handler" => "debug"
         }
         convert => {
-          "port" => "%d"
+          "status" => "%d"
         }
       }
       ...
