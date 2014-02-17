@@ -26,3 +26,18 @@ To report to sensu, you can have:
       }
       ...
     }
+
+statsd_custom
+=============
+
+This plugin scans selected message fields for statsd metrics (in raw format)
+and sends them to the configured statsd server.
+
+    output {
+      statsd_custom {
+        "host" => "localhost"
+        "port" => 8125
+        "fields" => ["message"]
+      }
+    }
+
